@@ -1514,14 +1514,14 @@ function updateNavigationUI() {
     // Update level indicator
     levelCounter.textContent = gameState.currentLevel;
 
-    // Show/hide prev button
+    // Show/hide prev button (hide only on level 0, allow going back from victory)
     prevButton.hidden = gameState.currentLevel === 0;
 
-    // Show/hide next button  
-    nextButton.hidden = gameState.currentLevel === 5;
+    // Show/hide next button (hide only at victory level 18)
+    nextButton.hidden = gameState.currentLevel === 18;
 
     // Disable next button if level not completed (unless already completed)
-    if (gameState.currentLevel < 5 && gameState.currentLevel > 0) {
+    if (gameState.currentLevel < 18 && gameState.currentLevel > 0) {
         const isCompleted = isLevelCompleted(gameState.currentLevel);
         const isPending = hasPendingCheck(gameState.currentLevel);
         nextButton.disabled = !(isCompleted || isPending);
